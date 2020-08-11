@@ -1,0 +1,32 @@
+<navBar />
+<map id="youngmap" longitude="{{longitude}}" latitude="{{latitude}}" polyline="{{polyline}}" markers="{{markers}}" include-points="{{points}}" style="width: 100%; height: 60%;"></map>
+<view class="container">
+	<view class="header">
+		<view class="place-title">
+			<view class="plot one"></view>
+			<text>{{startTitle}}</text>
+		</view>
+		<view class="place-title">
+			<view class="plot two"></view>
+			<text>{{destTitle}}</text>
+		</view>
+		<view class="passengers">
+			<view class="count-title">乘车人数: </view>
+			<view class="count {{selectOne?'active':''}}" bindtap="countTap" data-count="1">一</view>
+			<view class="count {{selectTwo?'active':''}}" bindtap="countTap" data-count="2">二</view>
+			<view class="count {{selectThree?'active':''}}" bindtap="countTap" data-count="3">三</view>
+			<view class="count {{selectFour?'active':''}}" bindtap="countTap" data-count="4">四</view>
+		</view>
+	</view>
+	<view id="car-btn" bindtap="callCar">
+		<view class="order" hidden="{{showLoading?false:true}}">
+			<text>等候司机接单</text>
+			<view class="loading">
+				<view class="loadplot load1"></view>
+				<view class="loadplot load2"></view>
+				<view class="loadplot load3"></view>
+			</view>
+		</view>
+		<view hidden="{{showLoading?true:false}}">立即打车</view>
+	</view>
+</view>

@@ -1,0 +1,2 @@
+<!--components/navBar/navBar.wxml-->
+<view style="height:{{statusBarHeight}}px;background:#204051;z-index:999"></view>

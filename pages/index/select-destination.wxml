@@ -1,0 +1,33 @@
+<navbar />
+<view class="container" style="height:calc(100vh - {{statusHeight}}px)">
+    <view class="top-nav">
+        <view class="back">
+            <image src="/images/back.png" bindtap="backIndex" />
+        </view>
+        <text class="select-destination">选择您的目的地</text>
+    </view>
+    <view class="header">
+        <picker range="{{array}}" value="{{index}}" bindchange="bindPickerChange">
+            <view class="picker" >
+                当前城市: {{array[index]}}
+            </view>
+        </picker>
+        <input placeholder="输入你的目的地" bindinput="getsuggest" adjust-position='false' focus />
+    </view>
+    <scroll-view scroll-y="true" scroll-with-animation style="height: 100%;">
+        <block wx:for='{{suggestion}}'>
+            <view class="content-item" bindtap="placeTap" data-lat='{{item.latitude}}'  data-lon='{{item.longitude}}' data-title='{{item.title}}'>
+                <view>
+                    <image src="/images/place.png" style="width:28px;height:28px;" />
+                </view>
+                <view class="content-place">
+                    <view>{{item.title}}</view>
+                    <view style="margin-top:10rpx; font-size:13px;color:#b2b2b2">
+                        {{item.city}}-{{item.district}}{{item.addr}}
+                    </view>
+                </view>
+            </view>
+        </block>
+        <view style="padding-top:20px"></view>
+    </scroll-view>
+</view>

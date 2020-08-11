@@ -1,0 +1,69 @@
+<!-- index.wxml -->
+<!-- <left-nav> -->
+<navBar />
+<view class="slide-button">
+	<image bindtap="_tapMenu" mode="center" src="/images/{{open?'menu':'back'}}.png" />
+</view>
+<view class="slide {{open ? 'c-state' : ''}}">
+	<view class="slide-nav">
+		<view class="slide-content">
+			<view class="wc">
+				<text>第一个item1</text>
+			</view>
+			<view class="wc">
+				<text>第二个item2</text>
+			</view>
+			<view class="wc">
+				<text>第三个item3</text>
+			</view>
+			<view class="wc">
+				<text>第四个item4</text>
+			</view>
+		</view>
+	</view>
+</view>
+
+<map id="youngmap" class="youngmap {{showDriver ? 'show-driver': ''}}" longitude="{{longitude}}" latitude="{{latitude}}" polyline="{{polyline}}" scale="17" markers="{{markers}}" bindmarkertap="markertap" bindregionchange="regionchange" bindcallouttap="callouttap" show-location>
+	<view id="drill">{{drillText}}</view>
+	<cover-image wx:if="{{showDriver?false:true}}" id="location" src="/images/location.png" style="width:32px;height:32px;" bindtap="tapLocation" />
+</map>
+<!-- <view id="select-place" style="height:calc(30% - {{statusBarHeight}}px)" hidden="{{showDriver?true:false}}">
+	<view class="header">
+		<view class="btn {{clicked?'clickStyle':'no'}}" bindtap="titleClickNow">现在</view>
+		<view style="margin-top: 30rpx;">|</view>
+		<view class="btn {{clicked?'no':'clickStyle'}}" bindtap="titleClickApporint">预约</view>
+	</view>
+	<view class="content-now" hidden="{{!clicked}}">
+		<view class="place-title">
+			<view class="plot one"></view>
+			<view class="input-place start">{{startPlace}}</view>
+		</view>
+		<view class="place-title">
+			<view class="plot two"></view>
+			<view class="input-place" bindtap="inputFocus" style="color: rgb(100,100,100);">
+				{{destinationPlace.title}}
+			</view>
+		</view>
+	</view>
+	<view class="content-later" hidden="{{clicked}}">
+		<view>预约...</view>
+	</view>
+</view> -->
+<view class="container">
+	<view class="header">
+		<image src="/images/notice.png" style="width:22px;height:22px;"/>
+		<text>拖动地图选择您的上车点</text>
+	</view>
+	<view class="content">
+		<view class="place-title">
+			<view class="plot one"></view>
+			<text>{{startPlace}}</text>
+		</view>
+		<view class="place-title" bindtap="inputFocus">
+			<view class="plot two"></view>
+			<text style="color: rgb(100,100,100);">{{destinationPlace.title}}</text>
+		</view>
+	</view>
+</view>
+
+<dialog id='dialog' />

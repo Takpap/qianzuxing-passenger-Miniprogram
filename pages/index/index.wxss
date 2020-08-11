@@ -1,0 +1,196 @@
+page {
+  height: 100%;
+}
+
+.youngmap {
+  position: relative;
+  width: 100%;
+  height: 70%;
+}
+
+.youngmap.show-driver {
+  position: relative;
+  width: 100%;
+  height: 35%;
+}
+
+#drill {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-90rpx, -152rpx);
+  width: 200rpx;
+  height: 70rpx;
+  background-color: #204051;
+  box-shadow: 10rpx 10rpx 10rpx rgba(0, 0, 0, .3);
+  border-radius: 20rem;
+  font-weight: bold;
+  font-size: 25rpx;
+  color: white;
+  text-align: center;
+  line-height: 70rpx;
+}
+
+#drill::after {
+  content: '';
+  position: absolute;
+  display: block;
+  width: 14rpx;
+  height: 80rpx;
+  top: 65rpx;
+  left: 93rpx;
+  background-color: #204051;
+  border-radius: 0 0 10em 10em;
+}
+
+#location {
+  position: absolute;
+  bottom: 30rpx;
+  left: 15px;
+  background-color: white;
+  border-radius: .2rem;
+  display: flex;
+  padding: 2px;
+  width: 32px;
+  height: 32px;
+  box-shadow: 0px 2px 8px #888888;
+}
+
+.header {
+  display: flex;
+  flex-direction: row;
+  justify-content: left;
+  align-items: flex-end;
+  margin: 30rpx 20rpx;
+  color: rgb(120, 120, 120);
+  padding-bottom: 20rpx;
+  border-bottom: 1rpx solid rgb(223, 223, 223);
+
+}
+.header text{
+  margin-left: 35rpx;
+  letter-spacing: 3rpx;
+}
+
+
+#select-place {
+  width: 100%;
+  text-align: left;
+  overflow: hidden;
+}
+.place-title {
+  display: flex;
+  flex-direction: row;
+  justify-content: left;
+  align-items: center;
+  padding-top: 30rpx;
+  padding-left: 30rpx;
+}
+
+.place-title:last-child{
+  padding-top: 40rpx;
+}
+
+.place-title text {
+  margin-left: 20px;
+  font-size: 35rpx;
+}
+.plot {
+  width: 30rpx;
+  height: 30rpx;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+
+.plot.one {
+  background-color: rgb(59, 105, 120);
+}
+
+.plot.two {
+  background-color: rgb(216,30,6);
+}
+
+.plot::after {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  border-radius: 50%;
+  animation: twinkle 2s ease-out infinite;
+}
+
+.plot.one::after {
+  content: "";
+  background-color: rgb(59, 105, 120);
+}
+
+.plot.two::after {
+  content: "";
+  animation-delay: .4s;
+  background-color: rgb(216,30,6);
+}
+
+@keyframes twinkle {
+
+  50%,
+  75% {
+    transform: scale(2);
+  }
+
+  80%,
+  100% {
+    opacity: 0;
+  }
+}
+
+
+.hr {
+  height: 2px;
+  background-color: #cfcfcf;
+  width: 70%;
+  display: flex;
+}
+
+.slide {
+  position: fixed;
+  width: 40vw;
+  height: 100vh;
+  transition: all .3s ease;
+  z-index: 5;
+}
+
+.slide-nav {
+  position: fixed;
+  width: 40vw;
+  height: 100vh;
+  background-color: #204051;
+}
+
+.wc {
+  color: white;
+  padding: 30rpx 0 30rpx 40rpx;
+}
+
+.slide-content {
+  padding-top: 300rpx;
+}
+
+.slide-button {
+  position: fixed;
+  left: 10px;
+  z-index: 20;
+}
+
+.slide-button image {
+  width: 32px;
+  height: 32px;
+  padding: 20rpx;
+}
+
+.c-state {
+  transform: translateX(-40vw);
+  width: 0px;
+
+}
