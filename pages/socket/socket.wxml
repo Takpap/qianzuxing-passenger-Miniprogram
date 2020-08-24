@@ -1,0 +1,10 @@
+<!--pages/socket/socket.wxml-->
+<navbar/>
+<input model:value="{{value}}" ></input>
+<view>{{resp}}</view>
+<button bindtap="websocket" style="margin-top:250rpx;">Socket</button>
+<view bindtap="tapBt" >测试</view>
+<view bindtap="tapHide" >测试</view>
+<button bindtap="tapLogin" style="margin-top:150rpx;" open-type="getUserInfo">Login</button>
+<button bindtap="tapPhone" style="margin-top:150rpx;" open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber">Phone</button>
+<view></view>

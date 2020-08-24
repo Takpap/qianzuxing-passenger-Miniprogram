@@ -81,6 +81,13 @@
 					"pathName": "pages/determine/determine",
 					"query": "startLat=26.25427&startLon=107.52226&startTitle=都匀市黔南布依族苗族自治州人民政府北&destLat=26.30212&destLon=107.52037&destTitle=贵州医科大学第三附属医院",
 					"scene": null
+				},
+				{
+					"id": 3,
+					"name": "pages/socket/socket",
+					"pathName": "pages/socket/socket",
+					"query": "startLat=26.25427&startLon=107.52226&startTitle=都匀市黔南布依族苗族自治州人民政府北&destLat=26.30212&destLon=107.52037&destTitle=贵州医科大学第三附属医院",
+					"scene": null
 				}
 			]
 		}

@@ -1,5 +1,9 @@
 <navBar />
-<map id="youngmap" longitude="{{longitude}}" latitude="{{latitude}}" polyline="{{polyline}}" markers="{{markers}}" include-points="{{points}}" style="width: 100%; height: 60%;"></map>
+<view id="model">
+</view>
+<map id="youngmap" longitude="{{longitude}}" latitude="{{latitude}}" polyline="{{polyline}}" markers="{{markers}}" include-points="{{points}}" style="width: 100%; height: 60%;">
+
+</map>
 <view class="container">
 	<view class="header">
 		<view class="place-title">
@@ -18,15 +22,18 @@
 			<view class="count {{selectFour?'active':''}}" bindtap="countTap" data-count="4">四</view>
 		</view>
 	</view>
-	<view id="car-btn" bindtap="callCar">
+	<view class="car-btn" bindtap="callCar" id="{{disabled}}" >
 		<view class="order" hidden="{{showLoading?false:true}}">
-			<text>等候司机接单</text>
+			<text style="z-index:9;color: white;">等候司机接单</text>
 			<view class="loading">
 				<view class="loadplot load1"></view>
 				<view class="loadplot load2"></view>
 				<view class="loadplot load3"></view>
 			</view>
 		</view>
-		<view hidden="{{showLoading?true:false}}">立即打车</view>
+		<!-- <button id="bt-car" disabled="{{false}}" hidden="{{showLoading?true:false}}">{{btText}}</button> -->
+		<view hidden="{{showLoading?true:false}}" style="z-index:9;color: white;">{{btText}}</view>
 	</view>
+
+
 </view>

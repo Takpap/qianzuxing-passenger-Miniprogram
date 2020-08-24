@@ -1,7 +1,7 @@
 <!-- index.wxml -->
 <!-- <left-nav> -->
 <navBar />
-<view class="slide-button">
+<!-- <view class="slide-button">
 	<image bindtap="_tapMenu" mode="center" src="/images/{{open?'menu':'back'}}.png" />
 </view>
 <view class="slide {{open ? 'c-state' : ''}}">
@@ -21,7 +21,7 @@
 			</view>
 		</view>
 	</view>
-</view>
+</view> -->
 
 <map id="youngmap" class="youngmap {{showDriver ? 'show-driver': ''}}" longitude="{{longitude}}" latitude="{{latitude}}" polyline="{{polyline}}" scale="17" markers="{{markers}}" bindmarkertap="markertap" bindregionchange="regionchange" bindcallouttap="callouttap" show-location>
 	<view id="drill">{{drillText}}</view>
@@ -49,7 +49,7 @@
 		<view>预约...</view>
 	</view>
 </view> -->
-<view class="container">
+<view class="container" hidden="{{false}}">
 	<view class="header">
 		<image src="/images/notice.png" style="width:22px;height:22px;"/>
 		<text>拖动地图选择您的上车点</text>

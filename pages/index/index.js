@@ -63,7 +63,7 @@ Page({
   onLoad: function () {
     console.log('onload')
     ctx = this
-    updateMarks = setInterval(this.getBaidulocations(), 10000)
+    // updateMarks = setInterval(this.getBaidulocations(), 10000)
   },
   onShow: function () {
     //console.log(Object.keys(this.data.destinationPlace).length)
@@ -76,6 +76,9 @@ Page({
     } else {
       ctx.getLocation1()
     }
+  },
+  onHide: function(){
+    clearInterval(updateMarks)
   },
   onUnload: function(){
       console.log("小程序已经关闭")

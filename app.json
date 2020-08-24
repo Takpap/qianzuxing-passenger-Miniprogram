@@ -3,7 +3,8 @@
     "pages/index/index",
     "pages/index/select-destination",
     "pages/mine/mine",
-    "pages/determine/determine"
+    "pages/determine/determine",
+    "pages/socket/socket"
   ],
   "window": {
     "navigationStyle": "custom"
