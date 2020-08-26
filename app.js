@@ -11,8 +11,8 @@ App({
   globalData: {
     //https://upyoung.xyz/ http://192.168.3.218/ http://47.100.139.125:8000/
     // baseUrl: 'http://47.100.139.125:8000/',
-    baseUrl: 'https://upyoung.xyz/',
-    // baseUrl: 'http://192.168.3.218/',
+    // baseUrl: 'https://upyoung.xyz/',
+    baseUrl: 'http://192.168.3.218/',
     statusBarHeight: 0,
   },
   //检查用户是否打开gps

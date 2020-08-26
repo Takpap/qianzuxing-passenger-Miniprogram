@@ -78,14 +78,14 @@ Page({
       wx.setStorageSync('callName', callName)
       wx.setStorageSync('phoneNumber', phoneNumber)
       wx.setStorageSync('isLogin', true)
-      userInfo = ctx.data.userInfo
+      console.log(ctx.data.userInfo)
       wx.request({
         method:'POST',
         url: app.globalData.baseUrl + 'passengerLogin',
         data: {
           'callName':callName,
           'phoneNumber':phoneNumber,
-          'userInfo': userInfo,
+          'userInfo': ctx.data.userInfo,
           'loginTime':formatTime.formatTime(new Date())
         },
         success(res){
