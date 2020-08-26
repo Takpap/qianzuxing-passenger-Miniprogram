@@ -22,7 +22,7 @@
 			<view class="count {{selectFour?'active':''}}" bindtap="countTap" data-count="4">四</view>
 		</view>
 	</view>
-	<view class="car-btn" bindtap="callCar" id="{{disabled}}" >
+	<view class="car-btn" bindtap="callCar" id="{{disabled}}" hidden="{{haveDriver?true:false}}">
 		<view class="order" hidden="{{showLoading?false:true}}">
 			<text style="z-index:9;color: white;">等候司机接单</text>
 			<view class="loading">
@@ -31,9 +31,24 @@
 				<view class="loadplot load3"></view>
 			</view>
 		</view>
-		<!-- <button id="bt-car" disabled="{{false}}" hidden="{{showLoading?true:false}}">{{btText}}</button> -->
 		<view hidden="{{showLoading?true:false}}" style="z-index:9;color: white;">{{btText}}</view>
 	</view>
-
-
+	<view class="driver" hidden="{{haveDriver?false:true}}">
+		<view class="driver-icon">
+			<image src="/images/driver.png" style="width:50px;height:50px;"></image>
+		</view>
+		<view class="driver-mes">
+			<view class="driver-mes-item">
+				<text>司机: </text>
+				<view>{{driverName}}</view>
+			</view>
+			<view class="driver-mes-item">
+				<text>车牌号: </text>
+				<view>{{driverLpn}}</view>
+			</view>
+		</view>
+		<view class="driver-call">
+			<image src="/images/call.png" style="width:50px;height:50px;" />
+		</view>
+	</view>
 </view>

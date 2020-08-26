@@ -26,6 +26,7 @@
 <map id="youngmap" class="youngmap {{showDriver ? 'show-driver': ''}}" longitude="{{longitude}}" latitude="{{latitude}}" polyline="{{polyline}}" scale="17" markers="{{markers}}" bindmarkertap="markertap" bindregionchange="regionchange" bindcallouttap="callouttap" show-location>
 	<view id="drill">{{drillText}}</view>
 	<cover-image wx:if="{{showDriver?false:true}}" id="location" src="/images/location.png" style="width:32px;height:32px;" bindtap="tapLocation" />
+	<cover-image wx:if="{{showDriver?false:true}}" id="mine" src="/images/mine.png" style="width:32px;height:32px;" bindtap="tapMine" />
 </map>
 <!-- <view id="select-place" style="height:calc(30% - {{statusBarHeight}}px)" hidden="{{showDriver?true:false}}">
 	<view class="header">

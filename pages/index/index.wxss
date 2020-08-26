@@ -55,6 +55,18 @@ page {
   height: 32px;
   box-shadow: 0px 2px 8px #888888;
 }
+#mine {
+  position: absolute;
+  bottom: 30rpx;
+  right: 15px;
+  background-color: white;
+  border-radius: .2rem;
+  display: flex;
+  padding: 2px;
+  width: 35px;
+  height: 35px;
+  box-shadow: 0px 2px 8px #888888;
+}
 
 .header {
   display: flex;

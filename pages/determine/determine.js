@@ -17,8 +17,9 @@ Page({
    * 页面的初始数据
    */
   data: {
-    btText:"立即打车",
+    btText: "立即打车",
     showLoading: false,
+    haveDriver: false,
     second: 1,
     passengers: 0,
     select: false,
@@ -90,7 +91,7 @@ Page({
     this.getPolyline()
   },
   //
-  onHide:function(){
+  onHide: function () {
     clearInterval(updateMarks)
   },
   //获取路线
@@ -184,10 +185,10 @@ Page({
   // 点击打车
   callCar: function () {
     let isLoin = wx.getStorageSync('isLogin')
-    if(!isLoin){
+    if (!isLoin) {
       wx.showToast({
         title: '方便司机沟通请先登录',
-        icon:"none"
+        icon: "none"
       })
       wx.navigateTo({
         url: '../mine/mine',
@@ -203,7 +204,7 @@ Page({
     }
     this.setData({
       showLoading: !this.data.showLoading,
-      disabled:"disabled"
+      disabled: "disabled"
     })
     if (this.data.showLoading) {
       this.sendToServer()
@@ -224,11 +225,11 @@ Page({
               })
               ctx.setData({
                 showLoading: !ctx.data.showLoading,
-                disabled:""
+                disabled: ""
               })
             },
           })
-        }, 60000)
+        }, 10000)
       }
     }
   },
@@ -239,11 +240,16 @@ Page({
       wx.request({
         url: app.globalData.baseUrl + 'pollingOrder?orderId=' + orderId,
         success(res) {
-          if (res.data.code === 200) {
+          var resdata = res.data
+          if (resdata.code === 200) {
             ctx.setData({
               showLoading: !ctx.data.showLoading,
               btText: "司机正向您目前所在起始点赶来, 前耐心等候",
-              disabled:"disabled"
+              driverName: resdata.driverName,
+              driverLpn: resdata.driverLpn,
+              driverTel: resdata.driverTel,
+              disabled: "disabled",
+              haveDriver:true,
             })
             wx.hideLoading();
             clearInterval(interal);
@@ -299,7 +305,7 @@ Page({
   //获取服务器上的百度坐标
   getBaidulocations: function () {
     wx.request({
-      url: app.globalData.baseUrl + 'getlocations?userId=c8fb97c78c49e294cc683b2fd1f30149',
+      url: app.globalData.baseUrl + 'getlocations?tel='+ctx.data.driverTel,
       success: (res) => {
         ctx.reverseLocation(res.data.latitude, res.data.longitude, res.data.direction)
       },
@@ -327,7 +333,7 @@ Page({
           ['markers[2].longitude']: longitude,
           ['markers[2].rotate']: parseFloat(direction),
         })
-        //ctx.DriverPassengerDistance(latitude,longitude)
+        // ctx.DriverPassengerDistance(latitude,longitude)
       },
       fail: function (error) {
         console.error(error);
@@ -338,14 +344,14 @@ Page({
     });
   },
   //计算司机和乘客之间的距离
-  DriverPassengerDistance(driverLatitidu,driverLongitude){
+  DriverPassengerDistance(driverLatitidu, driverLongitude) {
     qqMapWX.calculateDistance({
-      mode: 'driving',//可选值：'driving'（驾车）、'walking'（步行），不填默认：'walking',可不填
+      mode: 'driving', //可选值：'driving'（驾车）、'walking'（步行），不填默认：'walking',可不填
       //from参数不填默认当前地址
       //获取表单提交的经纬度并设置from和to参数（示例为string格式）
-      from: driverLatitidu +','+ driverLongitude, //若起点有数据则采用起点坐标，若为空默认当前地址
-      to: ctx.data.latitude+','+ctx.data.longitude, //终点坐标
-      success: function(res) {//成功后的回调
+      from: driverLatitidu + ',' + driverLongitude, //若起点有数据则采用起点坐标，若为空默认当前地址
+      to: ctx.data.latitude + ',' + ctx.data.longitude, //终点坐标
+      success: function (res) { //成功后的回调
         var res = res.result;
         var dis = [];
         for (var i = 0; i < res.elements.length; i++) {
@@ -355,10 +361,10 @@ Page({
           distance: dis
         });
       },
-      fail: function(error) {
+      fail: function (error) {
         console.error(error);
       },
-      complete: function(res) {
+      complete: function (res) {
         console.log(res);
       }
     });

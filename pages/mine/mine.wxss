@@ -29,8 +29,8 @@
   flex-direction: column;
   align-items: center;
   justify-content: start;
-  margin: 50rpx 30rpx;
-  padding: 40rpx 0;
+  margin: 50rpx 30rpx 20rpx;
+  padding: 40rpx 0 15rpx;
   background: white;
   border-radius: 20px;
   box-shadow: 0rpx 0rpx 15rpx rgba(0, 0, 0, .3);
@@ -55,6 +55,8 @@
 .body {
   display: flex;
   flex-direction: column;
+  margin-left: 25px;
+
 }
 
 .item label:first-child {
@@ -65,7 +67,8 @@
 .item:nth-child(1) {
   padding: 70rpx 0rpx;
 }
-.item input{
+
+.item input {
   display: inline-block;
 }
 
@@ -76,8 +79,28 @@
   align-items: center;
 }
 
+.tip {
+  margin: 35rpx 40rpx 0;
+  display: flex;
+  flex-wrap: nowrap;
+}
+
+.tip image {
+  width: 32px;
+  height: 32px;
+}
+
+.tip-text view {
+  margin-left: 5px;
+  width: 100%;
+  color: #888;
+}
+.tip-text view:last-child{
+  margin-top: 5px;
+}
+
 .login {
-  margin-top: 90rpx;
+  margin-top: 60rpx;
   padding: 0 40rpx;
 }
 

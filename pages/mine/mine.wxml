@@ -34,6 +34,12 @@
 		</view>
 	</view>
 </view>
+<view class="tip">
+	<view class="tip-text">
+		<view>1. 请输入正确的称呼和手机号, 方便司机与您取得联系。</view>
+		<view>2. 如需修改手机号请退出登录，再次登录时输入更改后的手机号即可。</view>
+	</view>
+</view>
 <view class="login">
 	<button bindtap="tapLogin" bindgetuserinfo="bindgetuserinfoCallback" style="width:100%;" open-type="getUserInfo">{{loginText}}</button>
 </view>

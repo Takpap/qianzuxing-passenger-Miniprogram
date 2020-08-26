@@ -63,7 +63,8 @@ Page({
   onLoad: function () {
     console.log('onload')
     ctx = this
-    // updateMarks = setInterval(this.getBaidulocations(), 10000)
+    ctx.mapCtx = wx.createMapContext("youngmap");
+    // updateMarks = setInterval(this.getBaidulocations(), 5000)
   },
   onShow: function () {
     //console.log(Object.keys(this.data.destinationPlace).length)
@@ -117,7 +118,6 @@ Page({
   //点击切换到当前位置
   tapLocation: function () {
     console.log('location')
-    ctx.mapCtx = wx.createMapContext("youngmap");
     var latitude = ctx.data.latitude,longitude = ctx.data.longitude
     ctx.mapCtx.moveToLocation({
       latitude: latitude,
@@ -129,6 +129,12 @@ Page({
     })
     ctx.getAddress(latitude, longitude)
   },
+    //点击切换到当前位置
+    tapMine: function () {
+      wx.navigateTo({
+        url: '../mine/mine',
+      })
+    },
   //点击切换到目的地选择页
   inputFocus: function () {
     wx.navigateTo({
@@ -161,7 +167,7 @@ Page({
       })
     }
     if (e.type == 'end' && (e.causedBy == 'drag'|| e.causedBy == 'update')) {
-      ctx.mapCtx = wx.createMapContext("youngmap");
+      // ctx.mapCtx = wx.createMapContext("youngmap");
       ctx.mapCtx.getCenterLocation({
         success: function (res) {
           ctx.setData({
@@ -178,7 +184,7 @@ Page({
   //获取服务器上的百度坐标
   getBaidulocations: function () {
     wx.request({
-      url: app.globalData.baseUrl + 'getlocations?userId=c8fb97c78c49e294cc683b2fd1f30149',
+      url: app.globalData.baseUrl + 'getlocations?tel=18722838975',
       success: (res) => {
         ctx.reverseLocation(res.data.latitude, res.data.longitude, res.data.direction)
       },
@@ -201,11 +207,27 @@ Page({
         var latitude = res.result.location.lat
         var longitude = res.result.location.lng;
         console.log(typeof (direction) + "\t" + typeof (longitude) + "\t" + latitude)
-        ctx.setData({
-          ['markers[2].latitude']: latitude,
-          ['markers[2].longitude']: longitude,
-          ['markers[2].rotate']: parseFloat(direction),
+        ctx.mapCtx.translateMarker({
+          markerId: 2,
+          autoRotate: true,
+          duration:5000,
+          rotate:parseFloat(direction),
+          destination: {
+            latitude:latitude,
+            longitude:longitude,
+          },
+          success(res){
+            console.log(res+"车子移动成功")
+          },
+          fail(e){
+            console.log(e)
+          }
         })
+        // ctx.setData({
+        //   ['markers[2].latitude']: latitude,
+        //   ['markers[2].longitude']: longitude,
+        //   ['markers[2].rotate']: parseFloat(direction),
+        // })
       },
       fail: function (error) {
         console.error(error);
