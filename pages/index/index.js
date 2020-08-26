@@ -64,10 +64,10 @@ Page({
     console.log('onload')
     ctx = this
     ctx.mapCtx = wx.createMapContext("youngmap");
-    // updateMarks = setInterval(this.getBaidulocations(), 5000)
   },
   onShow: function () {
     //console.log(Object.keys(this.data.destinationPlace).length)
+    updateMarks = setInterval(this.getBaidulocations(), 5000)
     if (Object.keys(this.data.destinationPlace).length != 1) {
       ctx.setData({
         ['markers[1].latitude']: ctx.data.destinationPlace.lat,
