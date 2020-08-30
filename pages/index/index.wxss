@@ -14,7 +14,7 @@ page {
   height: 35%;
 }
 
-#drill {
+/* #drill {
   position: absolute;
   top: 50%;
   left: 50%;
@@ -29,8 +29,7 @@ page {
   color: white;
   text-align: center;
   line-height: 70rpx;
-}
-
+} 
 #drill::after {
   content: '';
   position: absolute;
@@ -39,6 +38,34 @@ page {
   height: 80rpx;
   top: 65rpx;
   left: 93rpx;
+  background-color: #204051;
+  border-radius: 0 0 10em 10em;
+}
+*/
+#drill {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-55px, -80px);
+  width: 110px;
+  height: 34px;
+  background-color: #204051;
+  box-shadow: 10rpx 10rpx 10rpx rgba(0, 0, 0, .3);
+  border-radius: 20rem;
+  font-weight: bold;
+  font-size: 25rpx;
+  color: white;
+  text-align: center;
+  line-height: 34px;  
+}
+
+#drill::after {
+  content: '';
+  position: absolute;
+  display: block;
+  width: 8px;
+  height: 50px;
+  left: 51px;  
   background-color: #204051;
   border-radius: 0 0 10em 10em;
 }

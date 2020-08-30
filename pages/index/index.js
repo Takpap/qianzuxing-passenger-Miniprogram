@@ -23,7 +23,7 @@ Page({
     drillText: "在这里上车",
     longitude: 107.454958,
     latitude: 26.884335,
-    showDriver:false,
+    showDriver: false,
     markers: [{
         iconPath: "/images/dot.png",
         id: 0,
@@ -78,11 +78,11 @@ Page({
       ctx.getLocation1()
     }
   },
-  onHide: function(){
+  onHide: function () {
     clearInterval(updateMarks)
   },
-  onUnload: function(){
-      console.log("小程序已经关闭")
+  onUnload: function () {
+    console.log("小程序已经关闭")
   },
   //获取当前位置
   getLocation1: function () {
@@ -118,7 +118,8 @@ Page({
   //点击切换到当前位置
   tapLocation: function () {
     console.log('location')
-    var latitude = ctx.data.latitude,longitude = ctx.data.longitude
+    var latitude = ctx.data.latitude,
+      longitude = ctx.data.longitude
     ctx.mapCtx.moveToLocation({
       latitude: latitude,
       longitude: longitude,
@@ -129,16 +130,16 @@ Page({
     })
     ctx.getAddress(latitude, longitude)
   },
-    //点击切换到当前位置
-    tapMine: function () {
-      wx.navigateTo({
-        url: '../mine/mine',
-      })
-    },
+  //点击跳转登录界面
+  tapMine: function () {
+    wx.navigateTo({
+      url: '../mine/mine',
+    })
+  },
   //点击切换到目的地选择页
   inputFocus: function () {
     wx.navigateTo({
-      url: 'select-destination?latitude='+this.data.markers[0].latitude+'&longitude='+this.data.markers[0].longitude+'&title='+this.data.startPlace,
+      url: 'select-destination?latitude=' + this.data.markers[0].latitude + '&longitude=' + this.data.markers[0].longitude + '&title=' + this.data.startPlace,
     })
   },
   //点击菜单切换
@@ -160,13 +161,13 @@ Page({
   },
   //地图视野改变
   regionchange: function (e) {
-    if(e.type=='begin' && e.causedBy == 'gesture'){
+    if (e.type == 'begin' && e.causedBy == 'gesture') {
       ctx.setData({
         startPlace: '选择出发地......',
         drillText: '松手确认出发地'
       })
     }
-    if (e.type == 'end' && (e.causedBy == 'drag'|| e.causedBy == 'update')) {
+    if (e.type == 'end' && (e.causedBy == 'drag' || e.causedBy == 'update')) {
       // ctx.mapCtx = wx.createMapContext("youngmap");
       ctx.mapCtx.getCenterLocation({
         success: function (res) {
@@ -184,7 +185,7 @@ Page({
   //获取服务器上的百度坐标
   getBaidulocations: function () {
     wx.request({
-      url: app.globalData.baseUrl + 'getlocations?tel=18722838975',
+      url: app.globalData.baseUrl + 'getlocations?tel=15121387795',
       success: (res) => {
         ctx.reverseLocation(res.data.latitude, res.data.longitude, res.data.direction)
       },
@@ -210,16 +211,16 @@ Page({
         ctx.mapCtx.translateMarker({
           markerId: 2,
           autoRotate: true,
-          duration:5000,
-          rotate:parseFloat(direction),
+          duration: 5000,
+          rotate: parseFloat(direction),
           destination: {
-            latitude:latitude,
-            longitude:longitude,
+            latitude: latitude,
+            longitude: longitude,
           },
-          success(res){
-            console.log(res+"车子移动成功")
+          success(res) {
+            console.log(res + "车子移动成功")
           },
-          fail(e){
+          fail(e) {
             console.log(e)
           }
         })
@@ -253,50 +254,50 @@ Page({
     })
   },
   //根据起点和终点获取线路规划
-  getPolyline() {
-    var start = {},
-    dest = {}
-    start.latitude = ctx.data.markers[0].latitude
-    start.longitude = ctx.data.markers[0].longitude
-    dest.latitude = ctx.data.markers[1].latitude
-    dest.longitude = ctx.data.markers[1].longitude
-    //调用距离计算接口
-    qqMapWX.direction({
-      mode: 'driving', //可选值：'driving'（驾车）、'walking'（步行）、'bicycling'（骑行），不填默认：'driving',可不填
-      //from参数不填默认当前地址
-      from: start,
-      to: dest,
-      success: function (res) {
-        console.log(res);
-        var ret = res;
-        var coors = ret.result.routes[0].polyline,
-          pl = [];
-        //坐标解压（返回的点串坐标，通过前向差分进行压缩）
-        var kr = 1000000;
-        for (var i = 2; i < coors.length; i++) {
-          coors[i] = Number(coors[i - 2]) + Number(coors[i]) / kr;
-        }
-        //将解压后的坐标放入点串数组pl中
-        for (var i = 0; i < coors.length; i += 2) {
-          pl.push({
-            latitude: coors[i],
-            longitude: coors[i + 1]
-          })
-        }
-        //设置polyline属性，将路线显示出来,将解压坐标第一个数据作为起点
-        ctx.setData({
-          latitude: pl[0].latitude,
-          longitude: pl[0].longitude,
-          polyline: [{
-            points: pl,
-            color: '#FF0000DD',
-            width: 4
-          }]
-        })
-      },
-      fail: function (error) {
-        console.error(error);
-      }
-    });
-  }
+  // getPolyline() {
+  //   var start = {},
+  //     dest = {}
+  //   start.latitude = ctx.data.markers[0].latitude
+  //   start.longitude = ctx.data.markers[0].longitude
+  //   dest.latitude = ctx.data.markers[1].latitude
+  //   dest.longitude = ctx.data.markers[1].longitude
+  //   //调用距离计算接口
+  //   qqMapWX.direction({
+  //     mode: 'driving', //可选值：'driving'（驾车）、'walking'（步行）、'bicycling'（骑行），不填默认：'driving',可不填
+  //     //from参数不填默认当前地址
+  //     from: start,
+  //     to: dest,
+  //     success: function (res) {
+  //       console.log(res);
+  //       var ret = res;
+  //       var coors = ret.result.routes[0].polyline,
+  //         pl = [];
+  //       //坐标解压（返回的点串坐标，通过前向差分进行压缩）
+  //       var kr = 1000000;
+  //       for (var i = 2; i < coors.length; i++) {
+  //         coors[i] = Number(coors[i - 2]) + Number(coors[i]) / kr;
+  //       }
+  //       //将解压后的坐标放入点串数组pl中
+  //       for (var i = 0; i < coors.length; i += 2) {
+  //         pl.push({
+  //           latitude: coors[i],
+  //           longitude: coors[i + 1]
+  //         })
+  //       }
+  //       //设置polyline属性，将路线显示出来,将解压坐标第一个数据作为起点
+  //       ctx.setData({
+  //         latitude: pl[0].latitude,
+  //         longitude: pl[0].longitude,
+  //         polyline: [{
+  //           points: pl,
+  //           color: '#FF0000DD',
+  //           width: 4
+  //         }]
+  //       })
+  //     },
+  //     fail: function (error) {
+  //       console.error(error);
+  //     }
+  //   });
+  // }
 })

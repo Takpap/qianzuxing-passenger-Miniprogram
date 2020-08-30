@@ -229,13 +229,12 @@ Page({
               })
             },
           })
-        }, 10000)
+        }, 60000)
       }
     }
   },
   // 轮询司机接单状态
   setInteralPrompt() {
-    let tempSecond = 1;
     interal = setInterval(() => {
       wx.request({
         url: app.globalData.baseUrl + 'pollingOrder?orderId=' + orderId,
@@ -249,17 +248,17 @@ Page({
               driverLpn: resdata.driverLpn,
               driverTel: resdata.driverTel,
               disabled: "disabled",
-              haveDriver:true,
+              haveDriver: true,
             })
             wx.hideLoading();
-            clearInterval(interal);
-            clearInterval(timeOut);
             wx.showToast({
               title: '司机已经接单, 请耐心等候',
               duration: 2000
             })
-            console.log('司机已经接单了, 开始准备打车')
+            console.log(11)
             updateMarks = setInterval(ctx.getBaidulocations(), 10000)
+            clearInterval(timeOut);
+            clearInterval(interal);
           }
         }
       })
@@ -305,7 +304,7 @@ Page({
   //获取服务器上的百度坐标
   getBaidulocations: function () {
     wx.request({
-      url: app.globalData.baseUrl + 'getlocations?tel='+ctx.data.driverTel,
+      url: app.globalData.baseUrl + 'getlocations?tel=' + ctx.data.driverTel,
       success: (res) => {
         ctx.reverseLocation(res.data.latitude, res.data.longitude, res.data.direction)
       },
@@ -368,5 +367,11 @@ Page({
         console.log(res);
       }
     });
+  },
+  tapCallPhone() {
+    if (ctx.data.driverTel)
+      wx.makePhoneCall({
+        phoneNumber: ctx.data.driverTel //仅为示例，并非真实的电话号码
+      })
   }
 })
